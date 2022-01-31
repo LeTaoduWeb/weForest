@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Framework Bulma -->
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <!-- Google Font Lato et Kaushan -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Lato:wght@400;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <title>Reforestation dans le Tarn | Concours WeForest</title>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="container columns is-vcentered">
+        <img src="/images/Logo.svg" alt="Concours WeForest inscrit sur une planche de bois suspendue à une branche d'arbre" class="column is-two-fifths">
+        <nav class="menu__wrapper column">
+            <div class="columns is-flex">
+                <button class="menu__item column button is-white is-medium js-modal-trigger" id="concours" data-target="modal-js-concours">
+                    Concours
+                </button>
+                <button class="menu__item column button is-white is-medium js-modal-trigger" id="rules" data-target="modal-js-regles">
+                    Règles
+                </button>
+                <a href="#" class="menu__item column button is-white is-medium" id="newGame">
+                    Nouvelle partie
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Notification orientation mobile -->
+    <div class="columns is-mobile">
+        <div class="notification column is-danger  is-4-mobile is-6 is-offset-one-fifth has-text-centered px-6">
+            <button class="delete"></button>
+            Pour une meilleure expérience de jeu, nous vous invitons à tourner votre mobile pour avoir un écran plus large.
+          </div>
+    </div>
+
+    <!--  Partie principale  -->
+
+    <main class="container columns is-justify-content-space-evenly m-6 is-mobile">
+
+        <!-- Zone de Marc - joueur 1 -->
+        <section class="marc__wrapper column is-two-fifths">
+            <div class="marc__zone box is-flex-tablet is-flex-direction-column">
+                <h2 class="subtitle is-size-4-tablet has-text-centered" >
+                   <span id="marcTreesPlanted"></span>
+                </h2>
+                <!-- <img src="/images/Arbres fruitiers-midrow.svg" alt="Rangée de 5 arbres fruitiers" id="marcTreesShow">-->
+            </div>
+            <h2 class="title is-size-5-mobile has-text-centered is-spaced">Le verger de Marc</h2>
+            <h3 class="subtitle is-size-6-mobile has-text-centered" id="marcCollectedPlants">
+            </h3>
+            <div class="is-flex is-justify-content-center my-6">
+                <button class="button is-primary py-5 px-6 is-fullwidth has-text-weight-semibold" id="marcPlantAction">
+                    Planter
+                </button>
+            </div>
+        </section>
+
+        <!-- Zone de lancer de dé -->
+        <section class="dice__zone column is-one-fifths is-align-self-center is-narrow-mobile" >
+            <div class="is-flex is-flex-direction-column">
+                <div class="box has-background-warning-light is-size-2 has-text-centered has-text-weight-bold is-align-self-center" id="diceResult"> 0
+                </div>   
+                <button class="button is-warning mx-4 my-4 has-text-weight-semibold py-5" id="collect" >
+                    Collecter
+                </button>
+            </div>
+        </section>
+
+        <!-- Zone de Dany - joueur 1 -->
+        <section class="dany__wrapper column is-two-fifths">
+            <div class="dany__zone box is-flex-tablet is-flex-direction-column">
+                <h2 class="subtitle is-size-4-tablet has-text-centered" id="danyTreesPlanted">
+                </h2>
+                <!-- <img src="/images/Arbres-midrow.svg" alt="Rangée de 5 arbres" id="danyTreesShow"> -->
+            </div>
+            <h2 class="title is-size-5-mobile has-text-centered is-spaced">La forêt de Dany</h2>
+            <h3 class="subtitle has-text-centered is-size-6-mobile" id="danyCollectedPlants">
+            </h3>
+            <div class="is-flex is-justify-content-center my-6">
+                <button class="button is-primary py-5 px-6 is-fullwidth has-text-weight-semibold" id="danyPlantAction" disabled>
+                    Planter
+                </button>
+            </div>
+        </section>
+    </main>
+   
+    <footer class="footer">
+    </footer>
+
+    <!-- Modal Concours -->
+        <div class="modal" id="modal-js-concours">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title concours__title">Le concours WeForest</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="content">
+                    <p>
+                        Dans le Tarn, sur les Monts Lacaune, la forêt a été attaquée par des insectes. Elle est complètement dévastée.
+                    </p>
+                    <p>
+                        Les maires des villages voisins se sont regroupés pour faire appel à des entreprises locales. Leur mission était de couper les arbres morts et nettoyer la surface pour replanter des arbres.
+                    </p>
+                    <p>
+                        Pour faciliter le projet de replantation, les maires ont choisi de découper en 3 zones la surface à reboiser. Un appel à projets a été réalisé auprès de la population locale. Et, deux hommes se sont présentés : 
+                    </p>
+                    <ul>
+                        <li>
+                            Marc et un projet de verger. Il souhaite cultiver plusieurs variétés de fruits (pommes, poires, pêches...) et les vendre dans les marchés locaux
+                        </li>
+                        <li>
+                            Dany et un projet de forêt pour réhabiliter des ruches sauvages. Il défend ardemment les abeilles sauvages et le bien-être procuré par une forêt. Il aimerait organiser des sorties pédagogiques.
+                        </li>
+                    </ul>
+                    <p>
+                        Les deux projets sont très intéressants mais il n’y a pas de 3e projet pour replanter complètement la zone et LE TEMPS PRESSE !
+                    </p>
+                    <img src="/images/concours-reunion.jpg" alt="Illustration de plusieurs personnes en réunion" class="concours__img image">
+                    <p>
+                        Après de vifs débats, les maires décident d’organiser un concours entre Marc et Dany : le 1er qui plantera plus de 100 arbres sur sa zone gagnera la 3e zone libre pour agrandir la surface à planter pour son projet !
+                    </p>
+                </div>
+            </section>
+            <footer class="modal-card-foot"></footer>
+        </div>
+        </div>
+
+    <!-- Modal Règles -->
+        <div class="modal" id="modal-js-regles">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title concours__title">Les règles du  concours</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body ">
+                <div class="content">
+                    <p>
+                        Marc et Dany jouent chacun leur tour. 
+                    </p>
+                    <p>
+                        Pour atteindre les 100 arbres plantés, ils doivent aller collecter des plants chez les arboriculteurs et les pépiniéristes. Et, chaque fois, ils ne savent pas combien de plants ils ramèneront...
+                        <strong>Pour collecter les plants, il suffit de cliquer sur le bouton Collecter. </strong>
+                    </p>
+                    <p>
+                        <strong>Chaque participant peut collecter autant de fois qu’il le souhaite pendant son tour. </strong>
+                    </p>
+                    <p>
+                        <strong>Pour mettre en terre les plants</strong> que Marc et Dany ont collecté pendant leur tour, il faut <strong>cliquer sur le bouton Planter, en vert foncé. </strong>
+                        <br>
+                        Puis, c’est au tour de l’autre participant de collecter des plants pour sa zone.
+                    </p>
+                    <p>
+                        <strong>Mais attention !</strong> 
+                        <br>
+                        Les insectes apprécient les jeunes plants d’arbres pour y faire leur abri... Et, ils se cachent parfois dans les plants que Marc ou Dany ont collecté. Il suffit d’<strong>un seul plant </strong>pour ravager tous les plants en attente d’être plantés. Il faudra alors passer son tour à l’autre participant.
+                    </p>
+                    <p>
+                        Le premier qui a planté 100 arbres dans sa zone gagne le 1er prix du concours : la 3e zone libre pour agrandir sa plantation.
+                    </p>
+                    <p>
+                        <strong>Que le meilleur plante !</strong>
+                    </p>
+                </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Go</button>
+                </footer>
+            </div>
+        </div>
+
+    <!-- Messages de victoire et de perte -->
+        <!-- Message de victoire Marc -->
+        <div class="modal" id="modal-js-marc">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head has-background-white is-justify-content-end">
+                </header>
+                <section class="modal-card-body ">
+                    <div class="content has-text-centered">
+                        <img src="/images/Le verger final.svg" alt="Illustration d'un verger de pommes">
+                        <p class="success__title is-size-3 mt-4">
+                            Bravo, Marc ! 
+                        </p>
+                        <p class="success__message is-size-5">
+                            Tu as gagné le 1er prix :
+                            <br>
+                            2 hectares de plus pour
+                            agrandir le verger...
+                        </p>
+                    </div>
+                </section>
+                <footer class="modal-card-foot has-background-white">
+                </footer>
+            </div>
+        </div>
+
+        <!-- Message de victoire Dany -->
+        <div class="modal" id="modal-js-dany">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head has-background-white is-justify-content-end">
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="content has-text-centered">
+                        <img src="/images/dany_victoire.svg" alt="Illustration d'une ruche naturelle avec une abeille qui danse">
+                        <p class="success__title is-size-3 mt-4">
+                            Bravo, Dany ! 
+                        </p>
+                        <p class="success__message is-size-5">
+                            Tu as gagné le 1er prix :
+                            <br>
+                            2 hectares de plus pour
+                            offrir des abris pour les abeilles...
+                        </p>
+                    </div>
+                </section>
+                <footer class="modal-card-foot has-background-white">
+                </footer>
+            </div>
+        </div>
+
+        <!-- Message de perte des plants -->
+        <div class="modal" id="modal-js-perdu">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head has-background-white is-justify-content-end">
+                </header>
+                <section class="modal-card-body">
+                    <div class="content has-text-centered">
+                        <img src="/images/Frelons asiatiques.svg" alt="Illustration d'une ruche naturelle avec une abeille qui danse">
+                        <p class="success__message is-size-5 mt-4">
+                            Une invasion d’insectes 
+                            a ravagé les plants
+                            <br> que tu as
+                            collectés.
+                        </p>
+                        <p class="success__title is-size-3 has-text-danger">
+                            Tu as tout perdu !
+                        </p>
+                    </div>
+                </section>
+                <footer class="modal-card-foot has-background-white">
+                </footer>
+            </div>
+        </div>
+    <script src="script.js"></script>
+</body>
+</html>

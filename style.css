@@ -1,0 +1,68 @@
+body {
+    font-family: 'Lato', sans-serif; 
+}
+
+.footer {
+    background-image: url(/images/Background\ bottom.svg);
+}
+
+/* Header menu */
+.menu__wrapper {
+    padding-top: 8%;
+}
+.menu__item,
+.concours__title,
+.success__title {
+    font-family:'Kaushan Script', cursive;
+}
+
+.concours__img {
+    margin: auto;
+}
+
+/* Zone de jeu */
+
+.marc__zone,
+.dany__zone {
+    background-color: #EBF9F3;
+    height: 250px;
+}
+
+#diceResult {
+    border : 1px solid  hsl(0, 0%, 71%);
+}
+
+.button{
+    border-radius: 15px;
+}
+
+#marcTreesShow,
+#danyTreesShow {
+    max-height: 58px;
+}
+
+/*  Responsive */
+
+@media screen and (min-width: 620px){
+    .marc__zone,
+    .dany__zone {
+        height : 300px;
+    }  
+
+    #diceResult {
+        width: 100px;
+        height: 100px;
+    }  
+}
+
+@media screen and (min-width: 769px){
+    .marc__zone,
+    .dany__zone {
+        height : 325px;
+    } 
+
+    #marcPlantAction,
+    #danyPlantAction {
+        max-width: 245px;
+    }
+}
