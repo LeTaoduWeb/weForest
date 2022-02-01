@@ -10,13 +10,14 @@ const diceNumber = document.querySelector('#diceResult');
 const marcPlant = document.querySelector('#marcPlantAction');
 const marcTreesScore = document.querySelector('#marcTreesPlanted');
 const marcCollect = document.querySelector('#marcCollectedPlants');
-const marcAppleTrees = document.querySelector('#marcTreesShow');
+const marcTreesZone = document.querySelector('#marcTreesZone');
 
 // Zone de jeu Dany
 const danyPlant = document.querySelector('#danyPlantAction');
 const danyTreesScore = document.querySelector('#danyTreesPlanted');
 const danyCollect = document.querySelector('#danyCollectedPlants');
-const danyAppleTrees = document.querySelector('#danyTreesShow');
+const danyTreesZone = document.querySelector('#danyTreesZone');
+
 
 // Messages par fenêtre modale
 const looseMessage = document.querySelector('#modal-js-perdu');
@@ -26,18 +27,20 @@ const winMessageDany = document.querySelector('#modal-js-dany');
 // LES JOUEURS
 
 class Player {
-  constructor (roundScore, globalScore, plantCollected,treesPlanted, winMessage){
+  constructor (roundScore, globalScore, plantCollected,treesPlanted, treesZone, treeType, winMessage){
     this.roundScore = roundScore;
     this.globalScore = globalScore;
     this.plantCollected = plantCollected;
     this.treesPlanted = treesPlanted;
+    this.treesZone = treesZone;
+    this.treeType = treeType;
     this.winMessage = winMessage;
   }
 }
 
-let marcPlayer = new Player (0, 0, marcCollect, marcTreesScore, winMessageMarc);
+let marcPlayer = new Player (0, 0, marcCollect, marcTreesScore, marcTreesZone, 'Pommier.png', winMessageMarc);
 
-let danyPlayer = new Player (0, 0, danyCollect, danyTreesScore, winMessageDany);
+let danyPlayer = new Player (0, 0, danyCollect, danyTreesScore, danyTreesZone, 'Arbre.png', winMessageDany);
 
 
 // Initialisation des compteurs
@@ -86,16 +89,16 @@ function newGame () {
   messagePlantReset(marcPlayer);
   messageTreesReset(marcPlayer);
 
-  //Joueur Dany
+  // Joueur Dany
   danyPlayer.roundScore = 0;
   danyPlayer.globalScore = 0;
   messagePlantReset(danyPlayer);
   messageTreesReset(danyPlayer);
   
-  //Dé est à 0
+  // Dé est à 0
   diceReset();
 
-  //Retour au joueur Marc
+  // Retour au joueur Marc
   if(marcPlant.hasAttribute('disabled')){
     marcPlant.removeAttribute('disabled');
     danyPlant.setAttribute('disabled', '');
@@ -123,7 +126,7 @@ function nextPlayer() {
 
 function playMessage(message, delay){
 
-    // Déclencher la modale des plants perdus
+    // Déclencher le message
     message.classList.add('is-active');
 
     setTimeout( () => {
@@ -132,6 +135,20 @@ function playMessage(message, delay){
       diceReset();
     }, delay);
 
+}
+
+// Afficher les rangées d'arbres plantés
+
+function showTreesRow(player, number){
+  if(player.treesZone.children.length !== number){
+    for(let i = player.treesZone.children.length ; i < number ; i++){
+      let image = document.createElement('img');
+      image.src = `/images/${player.treeType}`;
+      image.className = 'treesShow';
+      image.alt = '1 arbre affiché pour 5 arbres plantés';
+      player.treesZone.appendChild(image);
+    }
+  }
 }
 
 // Tour de jeu d'un joueur
@@ -148,9 +165,23 @@ function play (player){
       //Réinitialisation du score de plants collectés à 0
       player.roundScore = 0;
       
-      // Déclencher la modale des plants perdus
-      playMessage(looseMessage, 3000);
-  
+      // Ajouter l'animation de perte 
+      diceNumber.classList.add('has-text-danger');
+      diceNumber.classList.add('loose-image');
+
+      setTimeout(() => {
+
+        // Retrait des classes d'animation
+        diceNumber.classList.remove('has-text-danger');
+        diceNumber.classList.remove('loose-image');
+
+        // Déclencher la modale des plants perdus
+        playMessage(looseMessage, 2000);
+
+        diceNumber.innerText = 0;
+      }, 1000);
+
+
       // Affichage des plants collectés à 0
       messagePlantReset(player);
   
@@ -179,6 +210,12 @@ function holdPlants (player){
 
     // On ajoute les plants collectés aux arbres plantés
     player.globalScore += currentPlayer.roundScore;
+
+    // Calcul du nombre de rangées d'arbres plantés à afficher
+
+    let numberTreesRow = Math.round(player.globalScore / 5);
+
+    showTreesRow(player, numberTreesRow);
 
     // Affichage du nombre total d'arbres
   
