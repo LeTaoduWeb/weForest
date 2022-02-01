@@ -36,9 +36,32 @@ body {
     border-radius: 15px;
 }
 
-#marcTreesShow,
-#danyTreesShow {
-    max-height: 58px;
+.treesShow {
+    height : 20px;
+    width: 18px;
+}
+
+.loose__message {
+    position: relative;
+}
+
+.loose-image {
+    animation: loose-image linear .2s 3;
+  }
+  
+@keyframes loose-image {
+    from {
+        left: 0;
+    }
+    33% {
+        left: .05em;
+    }
+    66% {
+        left: -.05em;
+    }
+    to {
+        left: 0;
+    }
 }
 
 /*  Responsive */
@@ -53,6 +76,11 @@ body {
         width: 100px;
         height: 100px;
     }  
+
+    .treesShow {
+        height : 35px;
+        width: auto;
+    }
 }
 
 @media screen and (min-width: 769px){
@@ -64,5 +92,10 @@ body {
     #marcPlantAction,
     #danyPlantAction {
         max-width: 245px;
+    }
+
+    .treesShow {
+        height : auto;
+        padding : 0 5px;
     }
 }
