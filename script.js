@@ -347,13 +347,48 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+// function isPortrait() {
+//   return window.innerHeight > window.innerWidth;
+// }
+
+// if(isPortrait()){
+//   alert("This page is best viewed in landscape mode");
+// }
+
+// if (window.matchMedia("(orientation: portrait)").matches) {
+//   alert("This page is best viewed in landscape mode");
+// }
+
+
 // Notification pour mobile
-  document.addEventListener('DOMContentLoaded', () => {
-    (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-      const $notification = $delete.parentNode;
+
+// if (isPortrait()) {
+//   document.addEventListener('DOMContentLoaded', () => {
+//     (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+//       const $notification = $delete.parentNode;
   
-      $delete.addEventListener('click', () => {
-        $notification.parentNode.removeChild($notification);
-      });
-    });
-  });
+//       $delete.addEventListener('click', () => {
+//         $notification.parentNode.removeChild($notification);
+//       });
+//     });
+//   });
+// }
+
+// const notificationMobile = document.querySelector('#notification-mobile');
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   // Functions to open and close a modal
+//   function openModal($el) {
+//     $el.classList.add('is-active');
+//   }
+
+//   function closeModal($el) {
+//     $el.classList.remove('is-active');
+//   }
+
+//   if (isPortrait()) {
+//     openModal(notificationMobile);
+//   } else {
+//     closeModal(notificationMobile);
+//   }
+// })

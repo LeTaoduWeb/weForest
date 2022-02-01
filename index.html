@@ -18,7 +18,7 @@
 <body>
 
     <!-- Header -->
-    <header class="container columns is-vcentered">
+    <header class="container columns is-vcentered is-mobile">
         <img src="/images/Logo.svg" alt="Concours WeForest inscrit sur une planche de bois suspendue à une branche d'arbre" class="column is-two-fifths">
         <nav class="menu__wrapper column">
             <div class="columns is-flex">
@@ -37,15 +37,16 @@
 
     <!-- Notification orientation mobile -->
     <div class="columns is-mobile">
-        <div class="notification column is-danger  is-4-mobile is-6 is-offset-one-fifth has-text-centered px-6">
+        <div class="notification column is-danger is-half  
+        is-offset-one-quarter has-text-centered my-6 px-6" id = "notification-mobile">
             <button class="delete"></button>
-            Pour une meilleure expérience de jeu, nous vous invitons à tourner votre mobile pour avoir un écran plus large.
+            Pour une meilleure expérience de jeu, nous vous invitons à tourner votre mobile pour avoir un écran plus large ou à utiliser un écran plus grand.
           </div>
     </div>
 
     <!--  Partie principale  -->
 
-    <main class="container columns is-justify-content-space-evenly m-6 is-mobile">
+    <main class="container columns is-justify-content-space-evenly mx-6 mt-6 is-mobile" id="main">
 
         <!-- Zone de Marc - joueur 1 -->
         <section class="marc__wrapper column is-two-fifths">
@@ -61,7 +62,7 @@
             <h2 class="title is-size-5-mobile has-text-centered is-spaced">Le verger de Marc</h2>
             <h3 class="subtitle is-size-6-mobile has-text-centered" id="marcCollectedPlants">
             </h3>
-            <div class="is-flex is-justify-content-center my-6">
+            <div class="is-flex is-justify-content-center mt-6">
                 <button class="button is-primary py-5 px-6 is-fullwidth has-text-weight-semibold" id="marcPlantAction">
                     Planter
                 </button>
@@ -92,7 +93,7 @@
             <h2 class="title is-size-5-mobile has-text-centered is-spaced">La forêt de Dany</h2>
             <h3 class="subtitle has-text-centered is-size-6-mobile" id="danyCollectedPlants">
             </h3>
-            <div class="is-flex is-justify-content-center my-6">
+            <div class="is-flex is-justify-content-center mt-6">
                 <button class="button is-primary py-5 px-6 is-fullwidth has-text-weight-semibold" id="danyPlantAction" disabled>
                     Planter
                 </button>
@@ -100,7 +101,7 @@
         </section>
     </main>
    
-    <footer class="footer">
+    <footer class="">
     </footer>
 
     <!-- Modal Concours -->

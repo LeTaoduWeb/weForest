@@ -2,8 +2,10 @@ body {
     font-family: 'Lato', sans-serif; 
 }
 
-.footer {
+footer {
+    height : 150px;
     background-image: url(/images/Background\ bottom.svg);
+    background-repeat: no-repeat;
 }
 
 /* Header menu */
@@ -65,6 +67,21 @@ body {
 }
 
 /*  Responsive */
+
+@media screen and (max-width: 589px){
+    #notification-mobile {
+        display : block;
+    }
+    #main {
+        display : none;
+    }
+}
+
+@media screen and (min-width: 590px) {
+    #notification-mobile {
+        display : none;
+    }
+}
 
 @media screen and (min-width: 620px){
     .marc__zone,
