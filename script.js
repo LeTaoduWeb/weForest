@@ -24,6 +24,7 @@ const looseMessage = document.querySelector('#modal-js-perdu');
 const winMessageMarc = document.querySelector('#modal-js-marc');
 const winMessageDany = document.querySelector('#modal-js-dany');
 
+
 // LES JOUEURS
 
 class Player {
@@ -79,6 +80,14 @@ function messageTreesReset(player){
 
 }
 
+// Suppression des arbres plantés affichés
+
+function removeTrees(player){
+  while(player.treesZone.firstChild){
+    player.treesZone.removeChild(player.treesZone.firstChild);
+  }
+}
+
 // Nouvelle partie ou victoire
 
 function newGame () {
@@ -97,6 +106,11 @@ function newGame () {
   
   // Dé est à 0
   diceReset();
+
+  // Suppression des rangées d'arbres plantés
+
+  removeTrees(marcPlayer);
+  removeTrees(danyPlayer);
 
   // Retour au joueur Marc
   if(marcPlant.hasAttribute('disabled')){
