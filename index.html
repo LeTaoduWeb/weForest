@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Une forêt du Tarn a été détruite. Les villages veulent replanter des arbres pour faire une forêt ou un verger. Un concours est organisé pour désigner le projet gagnant. 2 joueurs.">
     <!-- Framework Bulma -->
     <link rel="stylesheet" href="css/bulma.min.css">
     <!-- Google Font Lato et Kaushan -->
@@ -39,8 +40,7 @@
     <div class="columns is-mobile">
         <div class="notification column is-danger is-half  
         is-offset-one-quarter has-text-centered my-6 px-6" id = "notification-mobile">
-            <button class="delete"></button>
-            Pour une meilleure expérience de jeu, nous vous invitons à tourner votre mobile pour avoir un écran plus large ou à utiliser un écran plus grand.
+            Pour une meilleure expérience de jeu, nous vous invitons à tourner votre mobile ou à utiliser un écran plus large.
           </div>
     </div>
 
@@ -51,8 +51,8 @@
         <!-- Zone de Marc - joueur 1 -->
         <section class="marc__wrapper column is-two-fifths">
             <div class="marc__zone box is-flex-tablet is-flex-direction-column">
-                <h2 class="subtitle is-size-5-mobile  is-size-4 has-text-centered has-text-weight-bold  pb-2" >
-                   <span id="marcTreesPlanted"></span>
+                <h2 class="subtitle is-size-5-mobile  is-size-4 has-text-centered has-text-weight-bold  pb-2"  id="marcTreesPlanted">
+
                 </h2>
                 <div class="is-flex is-justify-content-center is-flex-wrap-wrap" id="marcTreesZone">
 
@@ -61,6 +61,7 @@
             </div>
             <h2 class="title is-size-5-mobile has-text-centered is-spaced">Le verger de Marc</h2>
             <h3 class="subtitle is-size-6-mobile has-text-centered" id="marcCollectedPlants">
+
             </h3>
             <div class="is-flex is-justify-content-center mt-6">
                 <button class="button is-primary py-5 px-6 is-fullwidth has-text-weight-semibold" id="marcPlantAction">
@@ -85,6 +86,7 @@
             <div class="dany__zone box is-flex is-flex-direction-column
             is-align-content-center">
                 <h2 class="subtitle is-size-5-mobile is-size-4 has-text-centered has-text-weight-bold" id="danyTreesPlanted">
+
                 </h2>
                 <div class="is-flex is-justify-content-center is-flex-wrap-wrap" id="danyTreesZone">
 
@@ -101,7 +103,7 @@
         </section>
     </main>
    
-    <footer class="">
+    <footer class="footer__custom">
     </footer>
 
     <!-- Modal Concours -->
@@ -140,7 +142,6 @@
                     </p>
                 </div>
             </section>
-            <footer class="modal-card-foot"></footer>
         </div>
         </div>
 
@@ -182,9 +183,6 @@
                     </p>
                 </div>
                 </section>
-                <footer class="modal-card-foot">
-                    <button class="button is-success">Go</button>
-                </footer>
             </div>
         </div>
 
@@ -193,9 +191,7 @@
         <div class="modal" id="modal-js-marc">
             <div class="modal-background"></div>
             <div class="modal-card">
-                <header class="modal-card-head has-background-white is-justify-content-end">
-                </header>
-                <section class="modal-card-body ">
+                <section class="modal-card-body">
                     <div class="content has-text-centered">
                         <img src="/images/Le verger final.svg" alt="Illustration d'un verger de pommes">
                         <p class="success__title is-size-3 mt-4">
@@ -209,8 +205,6 @@
                         </p>
                     </div>
                 </section>
-                <footer class="modal-card-foot has-background-white">
-                </footer>
             </div>
         </div>
 
@@ -218,9 +212,6 @@
         <div class="modal" id="modal-js-dany">
             <div class="modal-background"></div>
             <div class="modal-card">
-                <header class="modal-card-head has-background-white is-justify-content-end">
-                    <button class="delete" aria-label="close"></button>
-                </header>
                 <section class="modal-card-body">
                     <div class="content has-text-centered">
                         <img src="/images/dany_victoire.svg" alt="Illustration d'une ruche naturelle avec une abeille qui danse">
@@ -235,8 +226,6 @@
                         </p>
                     </div>
                 </section>
-                <footer class="modal-card-foot has-background-white">
-                </footer>
             </div>
         </div>
 
@@ -244,8 +233,6 @@
         <div class="modal" id="modal-js-perdu">
             <div class="modal-background"></div>
             <div class="modal-card">
-                <header class="modal-card-head has-background-white is-justify-content-end">
-                </header>
                 <section class="modal-card-body">
                     <div class="content has-text-centered">
                         <img src="/images/Frelons asiatiques.svg" alt="Illustration d'une ruche naturelle avec une abeille qui danse">
@@ -260,8 +247,6 @@
                         </p>
                     </div>
                 </section>
-                <footer class="modal-card-foot has-background-white">
-                </footer>
             </div>
         </div>
     <script src="script.js"></script>
