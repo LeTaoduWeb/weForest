@@ -5,17 +5,16 @@ const resetGame = document.querySelector('#newGame');
 // Zone du dé
 const collect = document.querySelector('#collect');
 const diceNumber = document.querySelector('#diceResult');
+const namePlayer = document.querySelector('#namePlayer');
 
 // Zone de jeu Marc
 const marcPlant = document.querySelector('#marcPlantAction');
 const marcTreesScore = document.querySelector('#marcTreesPlanted');
-const marcCollect = document.querySelector('#marcCollectedPlants');
 const marcTreesZone = document.querySelector('#marcTreesZone');
 
 // Zone de jeu Dany
 const danyPlant = document.querySelector('#danyPlantAction');
 const danyTreesScore = document.querySelector('#danyTreesPlanted');
-const danyCollect = document.querySelector('#danyCollectedPlants');
 const danyTreesZone = document.querySelector('#danyTreesZone');
 
 
@@ -28,10 +27,10 @@ const winMessageDany = document.querySelector('#modal-js-dany');
 // LES JOUEURS
 
 class Player {
-  constructor (roundScore, globalScore, plantCollected,treesPlanted, treesZone, treeType, winMessage){
+  constructor (name, roundScore, globalScore, treesPlanted, treesZone, treeType, winMessage){
+    this.name = name;
     this.roundScore = roundScore;
     this.globalScore = globalScore;
-    this.plantCollected = plantCollected;
     this.treesPlanted = treesPlanted;
     this.treesZone = treesZone;
     this.treeType = treeType;
@@ -39,20 +38,20 @@ class Player {
   }
 }
 
-let marcPlayer = new Player (0, 0, marcCollect, marcTreesScore, marcTreesZone, 'Pommier.png', winMessageMarc);
+let marcPlayer = new Player ('Marc', 0, 0, marcTreesScore, marcTreesZone, 'Pommier.png', winMessageMarc);
 
-let danyPlayer = new Player (0, 0, danyCollect, danyTreesScore, danyTreesZone, 'Arbre.png', winMessageDany);
+let danyPlayer = new Player ('Dany', 0, 0, danyTreesScore, danyTreesZone, 'Arbre.png', winMessageDany);
 
 
 // Initialisation des compteurs
 let dice = 0; 
 
-newGame();
-
-
 // Joueur débutant la partie
 let currentPlayer = marcPlayer;
 danyPlant.setAttribute('disabled', '');
+namePlayer.innerText= currentPlayer.name;
+
+newGame();
 
 
 // Les fonctions du jeu
@@ -60,7 +59,6 @@ danyPlant.setAttribute('disabled', '');
 // Le dé à 0
 
 function diceReset() {
-
   dice = 0
   diceNumber.innerText = dice;
 
@@ -68,9 +66,9 @@ function diceReset() {
 
 // Les messages à 0
 
-function messagePlantReset(player){
+function messagePlantReset(){
 
-  player.plantCollected.innerText = `${player.roundScore} plant collecté`;
+  collectedPlants.innerText = `0 plant collecté`;
 
 }
 
@@ -95,15 +93,15 @@ function newGame () {
   //Joueur Marc
   marcPlayer.roundScore = 0;
   marcPlayer.globalScore = 0;
-  messagePlantReset(marcPlayer);
   messageTreesReset(marcPlayer);
 
   // Joueur Dany
   danyPlayer.roundScore = 0;
   danyPlayer.globalScore = 0;
-  messagePlantReset(danyPlayer);
   messageTreesReset(danyPlayer);
   
+  messagePlantReset();
+
   // Dé est à 0
   diceReset();
 
@@ -117,6 +115,9 @@ function newGame () {
     marcPlant.removeAttribute('disabled');
     danyPlant.setAttribute('disabled', '');
   }
+
+  return currentPlayer = marcPlayer;
+  
 } 
 
 
@@ -168,13 +169,15 @@ function showTreesRow(player, number){
 // Tour de jeu d'un joueur
 
 function play (player){
-
+  
   dice = Math.floor(Math.random() * 10 + 1);
   // On récupère le chiffre du dé dans la zone d'affichage
   diceNumber.innerText = dice;
 
     // Cas Particulier
     if (dice === 1){
+      
+      collect.setAttribute('disabled', '');
 
       //Réinitialisation du score de plants collectés à 0
       player.roundScore = 0;
@@ -182,27 +185,29 @@ function play (player){
       // Ajouter l'animation de perte 
       diceNumber.classList.add('has-text-danger');
       diceNumber.classList.add('loose-image');
-
+      
       setTimeout(() => {
-
+        
         // Retrait des classes d'animation
         diceNumber.classList.remove('has-text-danger');
         diceNumber.classList.remove('loose-image');
-
+        
         // Déclencher la modale des plants perdus
         playMessage(looseMessage, 2500);
-
+        
         diceNumber.innerText = 0;
       }, 1500);
-
-
+      
+      
       // Affichage des plants collectés à 0
-      messagePlantReset(player);
-  
+      messagePlantReset();
+      
       // Prochain joueur
-  
-      nextPlayer();
-
+      setTimeout(() => {
+        nextPlayer();
+        namePlayer.innerText = currentPlayer.name;
+        collect.removeAttribute('disabled');
+      }, 2000);
     
     } else {
       // on ajoute le score du dé à la zone .. plants collectés
@@ -211,9 +216,9 @@ function play (player){
     
       // On affiche le score total de plants collectés sur le tour
       if (player.roundScore > 1){
-        player.plantCollected.innerText = `${player.roundScore} plants collectés`;
+        collectedPlants.innerText = `${player.roundScore} plants collectés`;
       } else {
-        messagePlantReset(player);
+        messagePlantReset();
       }
     }
 }
@@ -230,7 +235,7 @@ function holdPlants (player){
     let numberTreesRow = Math.round(player.globalScore / 5);
 
     showTreesRow(player, numberTreesRow);
-
+    
     // Affichage du nombre total d'arbres
   
     if(player.globalScore > 2){
@@ -238,8 +243,9 @@ function holdPlants (player){
     } else {
       messageTreesReset(player);
     };
-  
-    if(player.globalScore > 100){
+    
+    // En cas de victoire
+    if(player.globalScore >= 100){
   
       //Afficher le message pour le gagnant
       
@@ -247,18 +253,23 @@ function holdPlants (player){
     
       //Nouvelle partie : remise à zéro des compteurs
       newGame();
+
+      namePlayer.innerText= currentPlayer.name;
   
     } else {
       // Réinitialisation des plants collectés à 0
     
       player.roundScore = 0;
-      messagePlantReset(player);
+      messagePlantReset();
       
       // Le dé est à 0
       diceReset();
     
       // Prochain joueur
       nextPlayer();
+
+      // Affichage du nom du prochain joueur
+      namePlayer.innerText = currentPlayer.name;
     }
 
 }
@@ -267,8 +278,8 @@ function holdPlants (player){
 // LE JEU
 
 // Lancer le dé
-collect.addEventListener ('click',() => {
 
+collect.addEventListener ('click',() => {
   play(currentPlayer);
 
 })
@@ -293,6 +304,8 @@ danyPlant.addEventListener ('click', () => {
 resetGame.addEventListener ('click', (e) => {
   e.preventDefault();
   newGame();
+
+  namePlayer.innerText = currentPlayer.name;
 
 });
 

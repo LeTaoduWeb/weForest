@@ -2,15 +2,6 @@ body {
     font-family: 'Lato', sans-serif; 
 }
 
-.modal-card-body {
-    border-radius: 0 0 10px 10px;
-}
-
-#modal-js-marc .modal-card-body,
-#modal-js-dany .modal-card-body,
-#modal-js-perdu .modal-card-body {
-    border-radius: 10px;
-}
 
 .footer__custom {
     height : 150px;
@@ -51,8 +42,8 @@ body {
 }
 
 .treesShow {
-    height : 20px;
-    width: 18px;
+    height : 23px;
+    width: 20px;
 }
 
 .loose__message {
@@ -61,8 +52,8 @@ body {
 
 .loose-image {
     animation: loose-image linear .2s 3;
-  }
-  
+}
+
 @keyframes loose-image {
     from {
         left: 0;
@@ -76,6 +67,25 @@ body {
     to {
         left: 0;
     }
+}
+
+/* Messages */
+
+.modal-card-body {
+    border-radius: 0 0 10px 10px;
+}
+
+#modal-js-marc .modal-card-body,
+#modal-js-dany .modal-card-body,
+#modal-js-perdu .modal-card-body {
+    border-radius: 10px;
+}
+
+#modal-js-marc img,
+#modal-js-dany img,
+#modal-js-perdu img {
+    height: 200px;
+    width : 200px;
 }
 
 /*  Responsive */
@@ -126,5 +136,12 @@ body {
     .treesShow {
         height : auto;
         padding : 0 5px;
+    }
+
+    #modal-js-marc img,
+    #modal-js-dany img,
+    #modal-js-perdu img {
+        height: auto;
+        width : auto;
     }
 }
